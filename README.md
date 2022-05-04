@@ -48,3 +48,27 @@ This Terraform config creates the following resources:
 - Container Cluster
 - Container Node Pool
 - Google Compute Firewall
+
+## Usage
+
+After you cloned the repository, you first need to initialize terraform, so if you have docker installed, you can do this by running the command
+
+```
+docker-compose -f docker-compose.yml run --rm terraform init
+```
+
+You can see the plan by running the command
+
+```
+docker-compose -f docker-compose.yml run --rm terraform plan
+```
+
+To provision provision infrastructure, make sure you have a valid Service account file in the `google` directory.
+
+Update the `terraform.tfvars` with the correct `gcp_project_id`.
+
+You can then provision infrastructure by running the command
+
+```
+docker-compose -f docker-compose.yml run --rm terraform apply --auto-approve
+```
