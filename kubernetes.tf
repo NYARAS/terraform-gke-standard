@@ -2,7 +2,7 @@ resource "google_container_cluster" "primary" {
   name                     = var.cluster_name
   location                 = "${var.gcp_region}-a"
   remove_default_node_pool = true
-  initial_node_count       = 1
+  initial_node_count       = var.initial_node_count
   network                  = google_compute_network.main.self_link
   subnetwork               = google_compute_subnetwork.private.self_link
   logging_service          = "logging.googleapis.com/kubernetes"
