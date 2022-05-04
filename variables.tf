@@ -38,3 +38,25 @@ variable "service_account_name" {
   description = "Name of the resource."
   default     = "kubernetes"
 }
+variable "min_node_count" {
+  type        = string
+  description = "The min node counts for autoscalling."
+  default     = 1
+}
+
+variable "max_node_count" {
+  type        = string
+  description = "The max node counts for autoscalling."
+  default     = 5
+}
+variable "initial_node_count" {
+  type        = string
+  description = "The initial node counts."
+  default     = 1
+}
+
+variable "node_pools_machine_type" {
+  type        = string
+  description = "The node pool machine type to use."
+  default     = "e2-small"
+}
