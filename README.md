@@ -72,3 +72,25 @@ You can then provision infrastructure by running the command
 ```
 docker-compose -f docker-compose.yml run --rm terraform apply --auto-approve
 ```
+
+## Test the infrastructure
+
+After provisioning the infrastructure, you can test it with simple nginx deployment
+
+```
+kubectl apply -f k8s
+```
+
+## Destroy the infrastructure
+
+To destroy the whole infrastructure, first delete the deployment by running the command
+
+```
+kubectl delete -f k8s
+```
+
+then you can now run terraform destroy by running the command
+
+```
+docker-compose -f docker-compose.yml run --rm terraform destroy --auto-approve
+```
