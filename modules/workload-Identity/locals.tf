@@ -7,6 +7,6 @@ locals {
     "serviceAccount:${var.project_id}.svc.id.goog[${ns}/${local.k8s_given_name}]"
   ]
 
-  gcp_sa_email = google_service_account.cluster_service_account.email
+  gcp_sa_email          = google_service_account.cluster_service_account.email
   normalized_namespaces = toset(sort(var.namespaces))
 }
