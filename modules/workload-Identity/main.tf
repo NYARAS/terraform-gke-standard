@@ -4,6 +4,22 @@ resource "google_service_account" "cluster_service_account" {
   project      = var.project_id
 }
 
+variable "service_account_iam_roles" {
+  type        = list(any)
+  description = "List of the default IAM roles to attach to the service account on the GKE Nodes."
+  default = [
+    "roles/secretmanager.secretAccessor",
+  ]
+}
+
+resource "google_project_iam_member" "service-account" {
+  count   = length(var.service_account_iam_roles)
+  project = var.project_id
+  role    = element(var.service_account_iam_roles, count.index)
+  member  = "serviceAccount:${google_service_account.cluster_service_account.email}"
+}
+
+
 resource "kubernetes_service_account" "main" {
   for_each = var.use_existing_k8s_sa ? toset([]) : local.normalized_namespaces
 
